@@ -4,8 +4,6 @@
 #include<string>
 #include <chrono>
 #pragma comment (lib, "ws2_32.lib")
-
-
 using namespace std;
 
 void main() {
@@ -56,11 +54,6 @@ void main() {
 	int average = 0;;
 
 	do {
-
-
-
-
-
 		// wait for response
 		for (int i = 0;i < 5;i++) {
 			ZeroMemory(buf, 4096);
@@ -68,49 +61,21 @@ void main() {
 			if (receiveResult != SOCKET_ERROR) {
 				if (receiveResult > 0) {
 					counter++;
-
-
 					string temp = string(buf, 0, receiveResult);
 					cout << temp<<endl;
 					value = stoi(temp);
 					total += value;
 					average = total / counter;
-
-
-
 				}
-				// echo response in console
 			}
 		}
 		auto timenow =
 			chrono::system_clock::to_time_t(chrono::system_clock::now());
-
 		cout << ctime(&timenow) ;
-
 		cout << "Total>" << total << endl;
 		cout << "Average>" << average << endl<<"\n";
-
-
-
-
-
 	} while (true);
-
-
-
-
-	// Gracefully close down everything
-
-
+	//  close down everything
 	closesocket(sock);
 	WSACleanup();
-
-
-
-
-
-
-
-
-
 }
