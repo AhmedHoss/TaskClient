@@ -3,8 +3,14 @@
 #include<WS2tcpip.h>
 #include<string>
 #include <chrono>
+
+
 #pragma comment (lib, "ws2_32.lib")
 using namespace std;
+
+int calculateAverage(int total, int count) {
+	return total / count;
+}
 
 void main() {
 
@@ -51,7 +57,7 @@ void main() {
 	int value;
 	int counter = 0;
 	int total=0;
-	int average = 0;;
+	int average = 0;
 
 	do {
 		// wait for response
@@ -65,7 +71,8 @@ void main() {
 					cout << temp<<endl;
 					value = stoi(temp);
 					total += value;
-					average = total / counter;
+					
+					average = calculateAverage(total,counter);
 				}
 			}
 		}
